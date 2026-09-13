@@ -1,0 +1,23 @@
+# Build outputs and local binaries
+build/
+*.obj
+*.pdb
+*.dll
+*.exe
+
+# Local logs and reverse-engineering databases
+*.log
+ida_client
+*.i64
+*.id0
+*.id1
+*.id2
+*.nam
+*.til
+
+# Editor and operating-system files
+.vs/
+*.user
+*.suo
+.DS_Store
+Thumbs.db

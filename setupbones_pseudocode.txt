@@ -1,0 +1,360 @@
+__int64 __fastcall sub_1800EAAA0(__int64 a1, __int64 a2, int a3, int a4, int a5)
+{
+  __int64 v6; // r13
+  char v8; // al
+  char v9; // r8
+  const char *v10; // rax
+  __int64 v11; // rbx
+  int v12; // ecx
+  int v13; // esi
+  signed __int64 CurrentId; // rax
+  volatile signed __int64 *v15; // r15
+  signed __int64 v16; // rax
+  __int64 v17; // rax
+  unsigned int v18; // ecx
+  __int64 v19; // rax
+  __int64 *v20; // rdx
+  int v21; // eax
+  __int64 v22; // rdi
+  __int64 v23; // r12
+  __int64 v24; // rcx
+  int v25; // eax
+  int v26; // eax
+  __int64 v27; // rbx
+  _QWORD *v28; // r13
+  __int64 v29; // rax
+  _DWORD *v30; // rdi
+  __int64 v31; // rax
+  int v32; // esi
+  int v33; // edx
+  _OWORD *v34; // rax
+  float v35; // xmm0_4
+  __int64 v36; // rdi
+  __int64 v37; // r8
+  __int64 v38; // rax
+  __int64 v39; // rax
+  _QWORD *v40; // r12
+  int v41; // ecx
+  _DWORD *v42; // rax
+  int v43; // edi
+  int v44; // eax
+  __int64 v45; // rdx
+  __int64 v46; // rax
+  unsigned __int8 v47; // bl
+  __int64 v48; // r8
+  int v50; // [rsp+40h] [rbp-EA8h]
+  __int16 v51; // [rsp+44h] [rbp-EA4h]
+  int v52; // [rsp+48h] [rbp-EA0h]
+  __int128 v53; // [rsp+58h] [rbp-E90h] BYREF
+  __int128 v54; // [rsp+68h] [rbp-E80h] BYREF
+  __int128 v55; // [rsp+78h] [rbp-E70h]
+  __int128 v56; // [rsp+88h] [rbp-E60h]
+  _BYTE v57[1536]; // [rsp+A0h] [rbp-E48h] BYREF
+  _BYTE v58[2048]; // [rsp+6A0h] [rbp-848h] BYREF
+  int v59; // [rsp+EF0h] [rbp+8h]
+
+  v6 = a2;
+  v52 = *(_DWORD *)(g_VProfCurrentProfile + 4108LL);
+  if ( v52 )
+    CVProfile::EnterScope(g_VProfCurrentProfile, "C_BaseAnimating::SetupBones", 0, "Client_Animation", 0, 4);
+  if ( v6 )
+  {
+    v8 = (*(__int64 (__fastcall **)(__int64))(*(_QWORD *)(a1 - 8) + 1656LL))(a1 - 8);
+    v9 = xmmword_18076D230;
+    if ( v8 )
+      v9 = BYTE1(xmmword_18076D230);
+    if ( !v9 && (float)(*(float *)&dword_1807E4BE0 + 1.0) <= *(float *)off_1806F6650 )
+    {
+      v10 = (const char *)sub_180103730(a1 - 8);
+      sub_1800F2D20("*** ERROR: Bone access not allowed (entity %i:%s)\n", *(_DWORD *)(a1 + 128), v10);
+      dword_1807E4BE0 = *(_DWORD *)off_1806F6650;
+    }
+  }
+  v11 = a1 - 8;
+  if ( *(_DWORD *)(a1 - 8 + 3040) == -1 )
+    goto LABEL_107;
+  if ( a4 == -1 )
+    a4 = *(_DWORD *)(a1 + 2304);
+  v12 = a4 | 0x7FF00;
+  if ( !*((_DWORD *)off_180705758 + 22) )
+    v12 = a4;
+  v13 = v12 | 0x7FF00;
+  if ( !*(_BYTE *)(a1 + 237) )
+    v13 = v12;
+  if ( byte_1807D35E9 )
+  {
+    CurrentId = ThreadGetCurrentId();
+    if ( CurrentId == *(_QWORD *)(a1 + 2336)
+      || !_InterlockedCompareExchange64((volatile signed __int64 *)(a1 + 2336), CurrentId, 0LL) )
+    {
+      ++*(_DWORD *)(a1 + 2344);
+      goto LABEL_20;
+    }
+LABEL_107:
+    v47 = 0;
+    goto LABEL_108;
+  }
+LABEL_20:
+  v15 = (volatile signed __int64 *)(a1 + 2336);
+  v16 = ThreadGetCurrentId();
+  if ( v16 == *(_QWORD *)(a1 + 2336) || !_InterlockedCompareExchange64(v15, v16, 0LL) )
+  {
+    ++*(_DWORD *)(a1 + 2344);
+  }
+  else
+  {
+    _mm_pause();
+    CThreadFastMutex::Lock(a1 + 2336, v16, 0LL);
+  }
+  if ( byte_1807D35E9 )
+  {
+    if ( !--*(_DWORD *)(a1 + 2344) )
+      _InterlockedExchange64(v15, 0LL);
+  }
+  if ( *(_DWORD *)(a1 + 2296) != dword_1807E4BE4 )
+  {
+    if ( (*(float (__fastcall **)(__int64))(*(_QWORD *)v11 + 1712LL))(a1 - 8) >= *(float *)(a1 + 3192) )
+    {
+      *(_DWORD *)(a1 + 3192) = a5;
+      *(_QWORD *)(a1 + 2328) = 0LL;
+    }
+    *(_QWORD *)(a1 + 2304) = *(unsigned int *)(a1 + 2308);
+    if ( !*(_BYTE *)(v11 + 3261) )
+    {
+      if ( !*(_QWORD *)(v11 + 3272) )
+        sub_1800E6030(a1 - 8);
+      v17 = *(_QWORD *)(v11 + 3272);
+      if ( v17 )
+      {
+        *(_QWORD *)(v17 + 456) = 0LL;
+        *(_DWORD *)(v17 + 464) = 0;
+      }
+    }
+  }
+  if ( byte_1807D35EA && !byte_1807D35E9 && *(int *)(a1 + 3168) >= 16 )
+  {
+    v18 = *(_DWORD *)(a1 + 500);
+    if ( !v18
+      || (v18 != -1 ? (v19 = (unsigned __int16)v18) : (v19 = 0x1FFFLL),
+          (v20 = &qword_18076FCA8[4 * v19]) == 0LL || *((_DWORD *)v20 + 2) != HIWORD(v18) || !*v20) )
+    {
+      if ( *(_DWORD *)(a1 + 2300) != dword_1806F09DC )
+      {
+        *(_DWORD *)(a1 + 2300) = dword_1806F09DC;
+        v21 = dword_18076D1F0;
+        v22 = (unsigned int)dword_18076D1F0;
+        v23 = (unsigned int)(dword_18076D1F0 + 1);
+        if ( (int)v23 > dword_18076D1E8 )
+        {
+          sub_1800F4880(&qword_18076D1E0, (unsigned int)(dword_18076D1F0 - dword_18076D1E8 + 1));
+          v21 = dword_18076D1F0;
+        }
+        v24 = qword_18076D1E0;
+        dword_18076D1F0 = v21 + 1;
+        v25 = v21 - v22;
+        qword_18076D1F8 = qword_18076D1E0;
+        if ( v25 > 0 )
+        {
+          sub_1804B43E0(qword_18076D1E0 + 8 * v23, qword_18076D1E0 + 8 * v22, 8 * v25);
+          v24 = qword_18076D1E0;
+        }
+        *(_QWORD *)(v24 + 8 * v22) = v11;
+      }
+    }
+  }
+  v26 = dword_1807E4BE4;
+  *(_DWORD *)(a1 + 2308) |= v13;
+  *(_DWORD *)(a1 + 2296) = v26;
+  if ( (v13 & *(_DWORD *)(a1 + 2328)) == v13 )
+    goto LABEL_98;
+  v27 = qword_180760D58;
+  (*(void (__fastcall **)(__int64))(*(_QWORD *)qword_180760D58 + 200LL))(qword_180760D58);
+  if ( *(_BYTE *)(a1 + 3253) )
+    goto LABEL_94;
+  if ( !*(_QWORD *)(a1 + 3264) )
+    sub_1800E6030(a1 - 8);
+  v28 = *(_QWORD **)(a1 + 3264);
+  if ( !v28 )
+    goto LABEL_94;
+  if ( *(_DWORD *)(*v28 + 336LL) )
+  {
+    if ( !v28[1] )
+    {
+      v29 = (*(__int64 (__fastcall **)(__int64))(*(_QWORD *)qword_1807E4E78 + 184LL))(qword_1807E4E78);
+      if ( !sub_180231250(v28, v29) )
+        goto LABEL_94;
+    }
+  }
+  v30 = (_DWORD *)(*(__int64 (__fastcall **)(__int64))(*(_QWORD *)a1 + 8LL))(a1);
+  v31 = (*(__int64 (__fastcall **)(__int64))(*(_QWORD *)a1 + 16LL))(a1);
+  sub_180361C50(v31, &v54);
+  v32 = *(_DWORD *)(a1 + 2304) | v13;
+  v33 = *(_DWORD *)(a1 + 2328);
+  HIDWORD(v54) = *v30;
+  HIDWORD(v55) = v30[1];
+  HIDWORD(v56) = v30[2];
+  *(_DWORD *)(a1 + 2332) = v33 | v32;
+  *(_DWORD *)(a1 + 2328) = v33 | v32;
+  v51 = v32;
+  v50 = v33;
+  if ( (*(_BYTE *)(*v28 + 152LL) & 0x10) == 0 )
+  {
+    *(_DWORD *)(a1 + 1088) |= 8u;
+    v35 = *(float *)(a1 + 2536);
+    if ( v35 > 1.0000001 || v35 < 0.99999988 )
+    {
+      v40 = (_QWORD *)(a1 + 2248);
+      v36 = *(_QWORD *)(a1 + 2248);
+      if ( v36 )
+      {
+        sub_1800DA030(*(_QWORD *)(a1 + 2248));
+        (*(void (__fastcall **)(_QWORD, __int64))(*g_pMemAlloc + 40LL))(g_pMemAlloc, v36);
+        *v40 = 0LL;
+        v59 = v50 | v32;
+        goto LABEL_83;
+      }
+    }
+    else
+    {
+      v36 = *(_QWORD *)(a1 + 2248);
+      if ( !v36 && *(int *)(*v28 + 284LL) > 0 && (*(_BYTE *)(a1 + 134) & 2) == 0 )
+      {
+        v37 = sub_1801E1A10();
+        v38 = *g_pMemAlloc;
+        if ( v37 )
+          v39 = (*(__int64 (__fastcall **)(_QWORD, __int64, __int64, _QWORD))v38)(g_pMemAlloc, 4376LL, v37, 0LL);
+        else
+          v39 = (*(__int64 (__fastcall **)(_QWORD, __int64, _QWORD))(v38 + 8))(g_pMemAlloc, 4376LL, 0LL);
+        v36 = v39;
+        if ( v39 )
+        {
+          *(_QWORD *)(v39 + 4248) = 0LL;
+          *(_QWORD *)(v39 + 4256) = 0LL;
+          *(_DWORD *)(v39 + 4264) = 0;
+          *(_QWORD *)(v39 + 4272) = *(_QWORD *)(v39 + 4248);
+          *(_QWORD *)(v39 + 4280) = 0LL;
+          *(_QWORD *)(v39 + 4288) = 0LL;
+          *(_QWORD *)(v39 + 4304) = *(_QWORD *)(v39 + 4280);
+          *(_DWORD *)(v39 + 4296) = 0;
+          *(_QWORD *)(v39 + 4232) = v39;
+          *(_DWORD *)(v39 + 4360) = -1;
+          *(_QWORD *)(v39 + 4240) = 0LL;
+          *(_DWORD *)(v39 + 4364) = -1082130432;
+          *(_DWORD *)(v39 + 4224) = 0;
+        }
+        else
+        {
+          v36 = 0LL;
+        }
+        v33 = v50;
+        *(_QWORD *)(a1 + 2248) = v36;
+      }
+      v40 = (_QWORD *)(a1 + 2248);
+    }
+    v59 = v32 | v33;
+    if ( !v36 )
+    {
+LABEL_83:
+      v45 = a1 + 8;
+      if ( a1 == 8 )
+        v45 = 0LL;
+      ((void (__fastcall *)(__int64 (__fastcall ***)(), __int64, _QWORD *))**off_1806F8B80)(off_1806F8B80, v45, v28);
+      (*(void (__fastcall **)(__int64, _QWORD *, _BYTE *, _BYTE *, int, int))(*(_QWORD *)(a1 - 8) + 1456LL))(
+        a1 - 8,
+        v28,
+        v57,
+        v58,
+        a5,
+        v59);
+      v53 = 0LL;
+      if ( *v40 && (!*(_QWORD *)(a1 + 2192) || *(_BYTE *)(a1 + 132) != 23) )
+      {
+        (*(void (__fastcall **)(__int64))(*(_QWORD *)(a1 - 8) + 1360LL))(a1 - 8);
+        sub_1800DD010(*v40, (unsigned int)v57, (unsigned int)v58, *(_QWORD *)(a1 + 2320), (__int64)&v53);
+        (*(void (__fastcall **)(__int64))(*(_QWORD *)(a1 - 8) + 1368LL))(a1 - 8);
+        sub_1800DE2A0(*v40, (unsigned int)v57, (unsigned int)v58, *(_QWORD *)(a1 + 2320), (__int64)&v53);
+      }
+      (*(void (__fastcall **)(__int64, _QWORD *, _BYTE *, _BYTE *, __int128 *, int, __int128 *))(*(_QWORD *)(a1 - 8)
+                                                                                               + 1344LL))(
+        a1 - 8,
+        v28,
+        v57,
+        v58,
+        &v54,
+        v59,
+        &v53);
+      v46 = *(_QWORD *)(a1 - 8);
+      *(_DWORD *)(a1 + 1088) &= ~8u;
+      (*(void (__fastcall **)(__int64, _QWORD *))(v46 + 1408))(a1 - 8, v28);
+      LOWORD(v33) = v50;
+      goto LABEL_90;
+    }
+    if ( !(unsigned __int8)sub_180100390(a1 - 8) )
+    {
+      if ( *(_BYTE *)(a1 + 173) == *(_BYTE *)(a1 + 172) )
+      {
+LABEL_82:
+        v32 = *((_DWORD *)off_1806F6650 + 1);
+        v43 = (*(__int64 (__fastcall **)(__int64))(*(_QWORD *)a1 + 8LL))(a1);
+        v44 = (*(__int64 (__fastcall **)(__int64))(*(_QWORD *)a1 + 16LL))(a1);
+        sub_1800DBB80(*(_QWORD *)(a1 + 2248), (_DWORD)v28, v44, v43, a5, v32, v59);
+        LOWORD(v32) = v51;
+        goto LABEL_83;
+      }
+      v40 = (_QWORD *)(a1 + 2248);
+    }
+    v41 = 0;
+    if ( *(int *)(v36 + 4224) > 0 )
+    {
+      v42 = (_DWORD *)(v36 + 216);
+      do
+      {
+        *v42 = -9999;
+        v42 += 88;
+        ++v41;
+      }
+      while ( v41 < *(_DWORD *)(v36 + 4224) );
+      v40 = (_QWORD *)(a1 + 2248);
+    }
+    goto LABEL_82;
+  }
+  v34 = *(_OWORD **)(a1 + 2320);
+  *v34 = v54;
+  v34[1] = v55;
+  v34[2] = v56;
+LABEL_90:
+  if ( (v33 & 0x200) == 0 && (v32 & 0x200) != 0 && !(unsigned __int8)sub_1800E8D00(a1 - 8, v28) )
+  {
+    DevWarning(2LL, "SetupBones: SetupBones_AttachmentHelper failed.\n");
+LABEL_94:
+    (*(void (__fastcall **)(__int64))(*(_QWORD *)v27 + 208LL))(v27);
+    v47 = 0;
+    goto LABEL_102;
+  }
+  (*(void (__fastcall **)(__int64))(*(_QWORD *)v27 + 208LL))(v27);
+  v6 = a2;
+LABEL_98:
+  if ( v6 )
+  {
+    v48 = *(int *)(a1 + 3168);
+    if ( a3 < (int)v48 )
+    {
+      if ( dword_1807E4BDC < 25 )
+      {
+        Warning("SetupBones: invalid bone array size (%d - needs %d)\n", (unsigned int)a3);
+        ++dword_1807E4BDC;
+      }
+      v47 = 0;
+      goto LABEL_102;
+    }
+    sub_1804B43E0(v6, *(_QWORD *)(a1 + 3152), 48 * v48);
+  }
+  v47 = 1;
+LABEL_102:
+  if ( !--*(_DWORD *)(a1 + 2344) )
+    _InterlockedExchange64(v15, 0LL);
+LABEL_108:
+  if ( v52 )
+    CVProfile::ExitScope(g_VProfCurrentProfile);
+  return v47;
+}

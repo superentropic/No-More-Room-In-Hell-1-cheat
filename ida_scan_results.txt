@@ -1,0 +1,99 @@
+STR 1804ddc38 lock to bone
+XREF 1804ddc38 from 1806e0250 None
+STR 1804ddc48 Movement Lock to Bone
+XREF 1804ddc48 from 1806e0258 None
+XREF 1804ddc48 from 1806e45b8 None
+STR 180512a60 AutoIKRelease (%s) got a NULL pBone %d
+
+XREF 180512a60 from 1800de0d2 sub_1800DDD00
+STR 180512a88 AutoIKRelease (%s) got an out of range bone %d (%d)
+
+XREF 180512a88 from 1800de125 sub_1800DDD00
+STR 180513648 cl_SetupAllBones
+XREF 180513648 from 1800056eb sub_180005610
+STR 1805137a0 m_nForceBone
+XREF 1805137a0 from 1800870a1 sub_180087010
+XREF 1805137a0 from 1800e35a7 sub_1800E3530
+STR 180513b20 %d entities in bone setup array. Should have been cleaned up by now
+
+XREF 180513b20 from 1800e5258 sub_1800E5240
+STR 180513e10 GetBoneCache
+XREF 180513e10 from 1800e96a5 sub_1800E9610
+STR 180513e28 Enable parallel processing of C_BaseAnimating::SetupBones()
+XREF 180513e28 from 1800065b9 sub_1800064D0
+STR 180513e68 cl_threaded_bone_setup
+XREF 180513e68 from 1800065ab sub_1800064D0
+STR 180513e80 C_BaseAnimating::ThreadedBoneSetup
+XREF 180513e80 from 1801644b1 sub_180164100
+STR 180513ea8 C_BaseAnimating::SetupBones
+XREF 180513ea8 from 1800eaaf4 sub_1800EAAA0
+STR 180513ec8 *** ERROR: Bone access not allowed (entity %i:%s)
+
+XREF 180513ec8 from 1800eab5a sub_1800EAAA0
+STR 180513f00 SetupBones: SetupBones_AttachmentHelper failed.
+
+XREF 180513f00 from 1800eb26f sub_1800EAAA0
+STR 180513f38 SetupBones: invalid bone array size (%d - needs %d)
+
+XREF 180513f38 from 1800eb350 sub_1800EAAA0
+STR 180514400 C_BaseAnimating::BecomeRagdollOnClient failed. pRagdoll:%p bInitBoneArrays:%d bInitAsClient:%d
+
+XREF 180514400 from 1800efba6 sub_1800EFAE0
+STR 180514500 CBoneFollower
+XREF 180514500 from 180705cc0 None
+STR 180514510 DT_BoneFollower
+XREF 180514510 from 1800069be sub_1800067F0
+STR 180514568 C_BaseAnimating::RecordBones
+XREF 180514568 from 1800f2ebf sub_1800F2E40
+STR 180542568 Show which entities are having their bones setup each frame.
+XREF 180542568 from 18001d4c9 sub_18001D3E0
+STR 1805425a8 cl_ShowBoneSetupEnts
+XREF 1805425a8 from 18001d4bb sub_18001D3E0
+STR 1805447c8 NPCShadowBoneSetups
+XREF 1805447c8 from 18017c8f0 sub_18017C500
+STR 1805447e0 NonNPCShadowBoneSetups
+XREF 1805447e0 from 18017c938 sub_18017C500
+STR 1805606c8 Display physics-based 'jiggle bone' debugging information
+XREF 1805606c8 from 180037759 sub_180037670
+XREF 1805606c8 from 1800378c9 sub_1800377E0
+XREF 1805606c8 from 180037a39 sub_180037950
+STR 180560708 cl_jiggle_bone_debug_yaw_constraints
+XREF 180560708 from 1800378bb sub_1800377E0
+STR 180560730 cl_jiggle_bone_debug
+XREF 180560730 from 18003774b sub_180037670
+STR 180560750 Skip jiggle bone simulation if framerate drops below this value (frames/second)
+XREF 180560750 from 180037ba9 sub_180037AC0
+STR 1805607a0 cl_jiggle_bone_debug_pitch_constraints
+XREF 1805607a0 from 180037a2b sub_180037950
+STR 1805607d0 Jiggle bone #%d, basePos( %3.2f, %3.2f, %3.2f ), tipPos( %3.2f, %3.2f, %3.2f ), left( %3.2f, %3.2f, %3.2f ), up( %3.2f, %3.2f, %3.2f ), forward( %3.2f, %3.2f, %3.2f )
+
+XREF 1805607d0 from 1801de368 sub_1801DBA80
+STR 180560878 cl_jiggle_bone_framerate_cutoff
+XREF 180560878 from 180037b9b sub_180037AC0
+STR 180563030 follow_rootbone
+XREF 180563030 from 1805633a0 None
+STR 180569998 placementbone
+XREF 180569998 from 180213f20 sub_180213D40
+STR 180569ec8 m_ragdoll.boneIndex
+XREF 180569ec8 from 1806f8d60 None
+STR 18056ad68 C_ServerRagdollAttached::SetupBones
+XREF 18056ad68 from 18021a705 sub_18021A690
+STR 18056ae28 m_boneIndexAttached
+XREF 18056ae28 from 1800417d6 sub_180041770
+STR 18056ae60 m_attachmentPointBoneSpace
+XREF 18056ae60 from 1800417f2 sub_180041770
+STR 18056c3e8 CRagdollProp::CreateObjects:  Couldn't Lookup Bone %s
+
+XREF 18056c3e8 from 18021dc5f sub_18021DAB0
+STR 18060b868 _attachedBone
+XREF 18060b868 from 180083cc1 sub_180083C30
+STR 180611cb8 Failed to init bones for ragdoll!
+
+XREF 180611cb8 from 18031421d sub_180313D60
+STR 18062b5e0 Called Release() on CBoneList not allocated via Alloc() method
+
+XREF 18062b5e0 from 1800f346d sub_1800F33E0
+STR 18073c838 .?AVC_OP_LockToBone@@
+STR 18073c860 .?AV?$CParticleOperatorDefinition@VC_OP_LockToBone@@@@
+STR 18073f730 .?AV?$CDataManager@VCBoneCache@@Ubonecacheparams_t@@PEAV1@VCThreadFastMutex@@@@
+STR 18073fa50 .?AVC_BoneFollower@@
