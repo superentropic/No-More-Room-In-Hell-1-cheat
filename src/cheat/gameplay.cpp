@@ -386,6 +386,44 @@ static void MiscTick(void* lp)
     __except (EXCEPTION_EXECUTE_HANDLER) { }
 }
 
+#ifdef _WIN64
+// The old MiscTick bundle remains disabled on x64 because its stamina/speed/
+// movement writes are not verified. The ammo netvars are verified, but their
+// values must not be forced every frame: doing so races the weapon's own fire
+// and damage code.
+static void AmmoTickX64(void* lp)
+{
+    if (!g_cfg.misc.ammo) return;
+    __try
+    {
+        int whandle = *(int*)((unsigned char*)lp + NV_ACTIVE_WEAPON);
+        int widx = whandle & 0xFFF;
+        if (widx <= 0 || widx >= 2048) return;
+        void* wpn = ent_GetEntity(widx);
+        if (!wpn) return;
+
+        // Never write the active magazine: forcing clip values races the
+        // weapon fire code and can make shots register without damage.
+        // Replenish reserve ammo only, allowing normal firing/reload logic.
+
+        int ammoType = *(int*)((unsigned char*)wpn + NV_PRIMARY_AMMO_TYPE);
+        if (ammoType >= 0 && ammoType < 32)
+        {
+            int* reserve = (int*)((unsigned char*)lp + NV_AMMO + ammoType * 4);
+            int reserveValue = *reserve;
+            // Keep special/invalid negative reserve values intact. A reserve
+            // is replenished only when it has actually run out or is low.
+            if (reserveValue >= 0 && reserveValue <= 5)
+            {
+                *reserve = 200;
+                CheatLog("ammo: refilled reserve type=%d from %d to 200\\n", ammoType, reserveValue);
+            }
+        }
+    }
+    __except (EXCEPTION_EXECUTE_HANDLER) { }
+}
+#endif
+
 // called every rendered frame from the EndScene hook
 void GameplayTick()
 {
@@ -438,6 +476,7 @@ void GameplayTick()
 
 #ifdef _WIN64
     ProbeSetupBones(lp, localIdx);
+    AmmoTickX64(lp);
 #endif
 
 #ifndef _WIN64
